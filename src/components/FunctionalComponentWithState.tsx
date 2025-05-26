@@ -10,6 +10,7 @@ const FunctionalComponentWithState = ( ) => {
     const resetCount = () => {
         setCount(0);
     }
+
     return (
         <>
             <div className="space-y-4 pt-12">
