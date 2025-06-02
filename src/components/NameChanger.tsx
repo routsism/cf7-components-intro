@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState , useEffect} from "react";
 
 const NameChanger = () => {
     const [name, setName] = useState("")
@@ -7,6 +7,14 @@ const NameChanger = () => {
         setName(e.target.value)
     }
 
+    useEffect(() => {
+        document.title = name ? `Hello, ${name}!` : "Hello, Stranger"
+    }, [name])
+
+    useEffect(() => {
+        const id: number = setInterval(() => console.log("tick"),1000)
+        return () => clearInterval(id)
+    }, []);
 
     return (
         <>
