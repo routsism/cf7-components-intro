@@ -1,6 +1,12 @@
 import NameChanger from "../components/NameChanger.tsx";
+import {useEffect} from "react";
 
 const NameChangerPage = () => {
+
+    useEffect(() => {
+        document.title = "CF7 Name Changer";
+    },[])
+
     return (
         <>
             <NameChanger></NameChanger>
@@ -8,4 +14,4 @@ const NameChangerPage = () => {
     )
 };
 
-export default NameChangerPage
+export default NameChangerPage;
