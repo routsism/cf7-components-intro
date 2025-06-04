@@ -3,7 +3,7 @@
 // import ArrowFunctionalComponent from "./components/ArrowFunctionalComponent.tsx";
 // import ArrowFunctionalComponentWithProps from "./components/ArrowFunctionalComponentWithProps";
 // import ArrowFunctionalComponentWithPropsType from "./components/ArrowFunctionalComponentWithPropsType.tsx";
-import Layout from "./components/Layout.tsx";
+// import Layout from "./components/Layout.tsx";
 // import Todo from "./components/Todo/Todo.tsx";
 // import CounterWithReducer from "./components/CounterWithReducer.tsx";
 // import CounterWithCustomHook from "./components/CounterWithCustomHook.tsx";
@@ -15,8 +15,11 @@ import Layout from "./components/Layout.tsx";
 // import Counter from "./components/Counter.tsx";
 // import NameChanger from "./components/NameChanger.tsx";
 // import {useEffect} from "react";
-import OnlineStatus from "./components/OnlineStatus.tsx";
+// import OnlineStatus from "./components/OnlineStatus.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
+import {BrowserRouter, Routes, Route} from "react-router";
+import  HomePage  from "./pages/HomePage.tsx";
+import NameChangerPage from "./pages/NameChangerPage.tsx";
 
 // useEffect(() => {
 //     const id: number = setInterval(() => console.log("tick"),1000)
@@ -24,11 +27,13 @@ import OnlineStatus from "./components/OnlineStatus.tsx";
 // }, []);
 
 
+
+
 function App() {
 
   return (
     <>
-        <Layout>
+        {/*<Layout>*/}
         {/*<ClassComponent/>*/}
         {/*<FunctionalComponent/>*/}
         {/*<ArrowFunctionalComponent/>*/}
@@ -51,9 +56,17 @@ function App() {
             {/*<CounterWithReducer/>*/}
             {/*<Todo/>*/}
 
-            <OnlineStatus/>
+            {/*<OnlineStatus/>*/}
 
-        </Layout>
+        {/*</Layout>*/}
+
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/name-changer" element={<NameChangerPage/>}/>
+            </Routes>
+        </BrowserRouter>
+
     </>
   )
 }
