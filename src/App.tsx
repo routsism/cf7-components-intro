@@ -22,6 +22,7 @@ import  HomePage  from "./pages/HomePage.tsx";
 import NameChangerPage from "./pages/NameChangerPage.tsx";
 import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
 import UserPage from "./pages/UserPage.tsx";
+import RouterLayout from "./components/RouterLayout.tsx";
 
 // useEffect(() => {
 //     const id: number = setInterval(() => console.log("tick"),1000)
@@ -60,17 +61,23 @@ function App() {
             {/*<OnlineStatus/>*/}
 
         <BrowserRouter>
-            <Layout>
+            {/*<Layout>*/}
                 <Routes>
                     {/*<Route path="/" element={<HomePage/>}/>*/}
-                    <Route index element={<HomePage/>}/>
+
+                    <Route element={<RouterLayout />}>
+                        <Route index element={<HomePage/>}/>
+                    </Route>
+
                     <Route path="examples?">
                         <Route path="name-changer" element={<NameChangerPage/>}/>
                         <Route path="online-status" element={<OnlineStatusPage/>}/>
                     </Route>
                     <Route path="users/:userId" element={<UserPage/>}/>
+                    <Route path="users" element={<UserPage />}/>
+                    {/*<Route path="files/*" element={<FilePage/>}/>*/}
                 </Routes>
-            </Layout>
+            {/*</Layout>*/}
         </BrowserRouter>
 
     </>
