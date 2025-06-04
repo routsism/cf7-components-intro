@@ -29,7 +29,7 @@ const TodoList = ({todos, dispatch}: TodoListProps) => {
                         <span>{todo.text}</span>
                         <button
                             onClick={handleDelete(todo.id)}
-                            className="bg-red-900"
+                            className="text-cf-dark-red"
                         >
                             <Trash2 size={18}/>
 
