@@ -23,6 +23,10 @@ import NameChangerPage from "./pages/NameChangerPage.tsx";
 import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
 import UserPage from "./pages/UserPage.tsx";
 import RouterLayout from "./components/RouterLayout.tsx";
+import ExamplesPage from "./pages/ExamplesPage.tsx";
+import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
+import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
 
 // useEffect(() => {
 //     const id: number = setInterval(() => console.log("tick"),1000)
@@ -67,15 +71,22 @@ function App() {
 
                     <Route element={<RouterLayout />}>
                         <Route index element={<HomePage/>}/>
+                        <Route path="users/:userId" element={<UserPage/>}/>
+                        <Route path="users" element={<UserPage />}/>
                     </Route>
 
-                    <Route path="examples?">
+                    {/*<Route path="examples?"/>*/}
+                    <Route path="examples" element={<RouterExamplesLayout/>}>
+                        <Route index element={<ExamplesPage/>}/>
                         <Route path="name-changer" element={<NameChangerPage/>}/>
                         <Route path="online-status" element={<OnlineStatusPage/>}/>
+                        <Route path="auto-redirect" element={<AutoRedirectPage/>}/>
                     </Route>
                     <Route path="users/:userId" element={<UserPage/>}/>
                     <Route path="users" element={<UserPage />}/>
                     {/*<Route path="files/*" element={<FilePage/>}/>*/}
+
+                    <Route path="*" element={<NotFoundPage/>}/>
                 </Routes>
             {/*</Layout>*/}
         </BrowserRouter>
