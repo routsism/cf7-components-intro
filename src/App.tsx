@@ -18,7 +18,7 @@
 // import OnlineStatus from "./components/OnlineStatus.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 import {BrowserRouter, Routes, Route} from "react-router";
-import  HomePage  from "./pages/HomePage.tsx";
+// import  HomePage  from "./pages/HomePage.tsx";
 import NameChangerPage from "./pages/NameChangerPage.tsx";
 import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
 import UserPage from "./pages/UserPage.tsx";
@@ -27,6 +27,7 @@ import ExamplesPage from "./pages/ExamplesPage.tsx";
 import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
 import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
+import FocusInput from "./components/FocusInput.tsx";
 
 // useEffect(() => {
 //     const id: number = setInterval(() => console.log("tick"),1000)
@@ -70,7 +71,8 @@ function App() {
                     {/*<Route path="/" element={<HomePage/>}/>*/}
 
                     <Route element={<RouterLayout />}>
-                        <Route index element={<HomePage/>}/>
+                        {/*<Route index element={<HomePage/>}/>*/}
+                        <Route index element={<FocusInput/>}/>
                         <Route path="users/:userId" element={<UserPage/>}/>
                         <Route path="users" element={<UserPage />}/>
                     </Route>
