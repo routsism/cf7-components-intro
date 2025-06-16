@@ -34,37 +34,32 @@ const MultiFieldFormWithZodValidation = () => {
     const [submittedData, setSubmittedData] = useState<FormValues | null>(null);
     const [errors, setErrors] = useState<FormErrors | null>(null);
 
-    const validateForm = (values: FormValues): FormErrors => {
-        const errors: FormErrors = {};
-        if (!values.name.trim()) {
-          errors.name = "Name is required.";
-        }
+    const validateForm = () => {
+      const result = formSchema.safeParse(values);
 
-        if (!values.email.trim() ||
-            !/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/.
-            test(values.email.trim())) {
-            errors.email = "Email is required.";
-        }
+      if (!result.success) {
+          const newErrors: FormErrors = {};
 
-        if (values.message.length < 5) {
-            errors.message = "Message is required.";
-        }
-        return errors;
+          result.error.issues.forEach((issue) => {
+              const fieldName = issue.path[0] as keyof FormValues;
+              newErrors[fieldName] = issue.message;
+          });
+          setErrors(newErrors);
+          return false;
+      }
+      setErrors({});
+      return true;
     };
 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        const validationErrors =  validateForm(values);
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            setSubmittedData(null);
-            return;
+        const isValid =  validateForm();
+        if (isValid) {
+            setSubmittedData(values);
+            setValues(initialValues);
         }
-        setSubmittedData(values);
-        setValues(initialValues);
-        setErrors(null);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -100,6 +95,7 @@ const MultiFieldFormWithZodValidation = () => {
                         placeholder="Name"
                         onChange={handleChange}
                         className="w-full px-4 py-2 rounded border"
+                        autoComplete="off"
                     />
                     {errors?.name && (
                         <p className="text-cf-dark-red">{errors?.name}</p>
@@ -125,7 +121,6 @@ const MultiFieldFormWithZodValidation = () => {
                         value={values.message}
                         onChange={handleChange}
                         className="w-full px-4 py-2 rounded border"
-                        minLength={5}
                     ></textarea>
                     {errors?.message && (
                         <p className="text-cf-dark-red">{errors?.message}</p>
