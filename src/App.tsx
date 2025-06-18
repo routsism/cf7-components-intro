@@ -24,6 +24,7 @@ import {BrowserRouter, Routes, Route} from "react-router";
 // import UserPage from "./pages/UserPage.tsx";
 import RouterLayout from "./components/RouterLayout.tsx";
 import ProductList from "@/pages/ProductList.tsx";
+import Product from "@/pages/Product.tsx";
 // import ExamplesPage from "./pages/ExamplesPage.tsx";
 // import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
 // import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
@@ -102,7 +103,7 @@ function App() {
                     <Route path="products" element={<RouterLayout/>}>
                         <Route index element={<ProductList/>}/>
                         {/*<Route path="new" element={<Product/>}/>*/}
-                        {/*<Route path=":productId" element={<Product/>}/>*/}
+                        <Route path=":productId" element={<Product/>}/>
                         </Route>
 
                 </Routes>
